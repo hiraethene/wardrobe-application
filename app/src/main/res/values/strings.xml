@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">wardrobe-application</string>
+    <string name="button_second">button_second</string>
+    <string name="text_header">text_header</string>
+    <string name="editText_main">text_header</string>
+    <string name="button_main">button_main</string>
 </resources>
