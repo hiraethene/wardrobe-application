@@ -1,7 +1,74 @@
 <resources>
     <string name="app_name">wardrobe-application</string>
-    <string name="button_second">button_second</string>
+    <string name="btnBack">Back</string>
+    <string name="btnUploadItem">Upload Item</string>
     <string name="text_header">text_header</string>
     <string name="editText_main">text_header</string>
     <string name="button_main">button_main</string>
+    <string name="title">title</string>
+    <string name="itemNum">itemNum</string>
+    <string name="tvAddItem">Add an item</string>
+    <string name="tvCategory">Category</string>
+    <string name="tvTitle">Title</string>
+    <string name="tvDescription">Description</string>
+    <string name="tvBrand">Brand</string>
+    <string name="tvSize">Size</string>
+    <string name="tvCondition">Condition</string>
+    <string name="tvColour">Colour</string>
+    <string name="tvPrice">Price</string>
+    <string name="tvMaterial">Material</string>
+    <string name="tmTitle">Title</string>
+    <string name="tmDescription">Description</string>
+    <string name="tmBrand">Brand</string>
+    <string name="tmMaterial">Material</string>
+    <string name="tmPrice">Price</string>
+
+    <string-array name ="array_category">
+        <item>Select a category</item>
+        <item>Tops</item>
+        <item>Bottoms</item>
+        <item>Dresses</item>
+        <item>Jackets and Coats</item>
+        <item>Swimwear</item>
+        <item>Shoes</item>
+    </string-array>
+
+    <string-array name="array_size">
+        <item>Select a size</item>
+        <item> XXXS / UK 0</item>
+        <item> XXS / UK 2</item>
+        <item> XS / UK 4–6</item>
+        <item> S / UK 8–10</item>
+        <item> M / UK 12–14</item>
+        <item> L / UK 16–18</item>
+        <item> XL / UK 20–22</item>
+        <item> XXL / UK 24–26</item>
+        <item> XXXL / UK 28–30</item>
+    </string-array>
+
+    <string-array name="array_condition">
+        <item>Select a condition</item>
+        <item>New with tags</item>
+        <item>New without tags</item>
+        <item>Very good</item>
+        <item>good</item>
+        <item>okay</item>
+    </string-array>
+
+    <string-array name="array_colour">
+        <item>Select a colour</item>
+        <item>black</item>
+        <item>gray</item>
+        <item>white</item>
+        <item>red</item>
+        <item>pink</item>
+        <item>purple</item>
+        <item>blue</item>
+        <item>green</item>
+        <item>yellow</item>
+        <item>orange</item>
+        <item>brown</item>
+        <item>beige</item>
+        <item>multi-colour</item>
+    </string-array>
 </resources>

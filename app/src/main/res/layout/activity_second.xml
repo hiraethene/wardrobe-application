@@ -5,41 +5,239 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondActivity">
+    tools:context=".SecondActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="39dp">
 
     <TextView
-        android:id="@+id/text_header"
+        android:id="@+id/tvAddItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
-        android:text="@string/text_header"
+        android:text="@string/tvAddItem"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/btnImageUpload"
+        android:layout_width="201dp"
+        android:layout_height="150dp"
+        app:layout_constraintStart_toStartOf="@id/tvAddItem"
+        app:layout_constraintEnd_toEndOf="@id/tvAddItem"
+        app:layout_constraintTop_toBottomOf="@id/tvAddItem"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
     <TextView
-        android:id="@+id/text_message"
+        android:id="@+id/tvCategory"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_header" />
+        android:layout_height="40dp"
+        android:text="@string/tvCategory"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@id/btnImageUpload"
+        app:layout_constraintEnd_toEndOf="@id/btnImageUpload"
+        app:layout_constraintTop_toBottomOf="@id/btnImageUpload"
+        />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvTitle"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/tvCategory"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/tvCategory"
+        app:layout_constraintTop_toBottomOf="@id/tvCategory" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:text="@string/tvDescription"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/tvTitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvBrand"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvBrand"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/tvDescription"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/tvDescription"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+
+    <TextView
+        android:id="@+id/tvSize"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvSize"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvBrand"
+        app:layout_constraintEnd_toEndOf="@id/tvBrand"
+        app:layout_constraintTop_toBottomOf="@id/tvBrand"/>
+
+    <TextView
+        android:id="@+id/tvCondition"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvCondition"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvSize"
+        app:layout_constraintEnd_toEndOf="@id/tvSize"
+        app:layout_constraintTop_toBottomOf="@id/tvSize"/>
+
+    <TextView
+        android:id="@+id/tvColour"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvColour"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvCondition"
+        app:layout_constraintEnd_toEndOf="@id/tvCondition"
+        app:layout_constraintTop_toBottomOf="@id/tvCondition" />
+
+    <TextView
+        android:id="@+id/tvMaterial"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvMaterial"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvColour"
+        app:layout_constraintEnd_toEndOf="@id/tvColour"
+        app:layout_constraintTop_toBottomOf="@id/tvColour" />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvPrice"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvMaterial"
+        app:layout_constraintEnd_toEndOf="@id/tvMaterial"
+        app:layout_constraintTop_toBottomOf="@id/tvMaterial" />
+
+
+    <Spinner
+        android:id="@+id/spCategory"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toEndOf="@id/btnImageUpload"
+        app:layout_constraintEnd_toEndOf="@id/btnImageUpload"
+        app:layout_constraintTop_toBottomOf="@id/btnImageUpload"
+        />
+
+    <EditText
+        android:id="@+id/tmTitle"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:autofillHints="meow"
+        android:ems="10"
+        android:hint="@string/tmTitle"
+        android:inputType="textLongMessage"
+        app:layout_constraintStart_toStartOf="@id/spCategory"
+        app:layout_constraintEnd_toEndOf="@id/spCategory"
+        app:layout_constraintTop_toBottomOf="@id/spCategory"
+        />
+
+    <EditText
+        android:id="@+id/tmDescription"
+        android:layout_width="222dp"
+        android:layout_height="80dp"
+        android:autofillHints="meow"
+        android:ems="10"
+        android:hint="@string/tmDescription"
+        android:inputType="textLongMessage"
+        app:layout_constraintStart_toStartOf="@id/tmTitle"
+        app:layout_constraintEnd_toEndOf="@id/tmTitle"
+        app:layout_constraintTop_toBottomOf="@id/tmTitle" />
+
+    <EditText
+        android:id="@+id/tmBrand"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:autofillHints="meow"
+        android:ems="10"
+        android:hint="@string/tmBrand"
+        android:inputType="textLongMessage"
+        app:layout_constraintStart_toStartOf="@id/tmDescription"
+        app:layout_constraintEnd_toEndOf="@id/tmDescription"
+        app:layout_constraintTop_toBottomOf="@id/tmDescription"  />
+
+    <Spinner
+        android:id="@+id/spSize"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="@id/tmBrand"
+        app:layout_constraintEnd_toEndOf="@id/tmBrand"
+        app:layout_constraintTop_toBottomOf="@id/tmBrand"  />
+
+    <Spinner
+        android:id="@+id/spCondition"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="@id/spSize"
+        app:layout_constraintEnd_toEndOf="@id/spSize"
+        app:layout_constraintTop_toBottomOf="@id/spSize" />
+
+    <Spinner
+        android:id="@+id/spColour"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="@id/spCondition"
+        app:layout_constraintEnd_toEndOf="@id/spCondition"
+        app:layout_constraintTop_toBottomOf="@id/spCondition" />
+
+    <EditText
+        android:id="@+id/tmMaterial"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:autofillHints="meow"
+        android:ems="10"
+        android:hint="@string/tmMaterial"
+        android:inputType="textLongMessage"
+        app:layout_constraintStart_toStartOf="@id/spColour"
+        app:layout_constraintEnd_toEndOf="@id/spColour"
+        app:layout_constraintTop_toBottomOf="@id/spColour"/>
+
+    <EditText
+        android:id="@+id/tmPrice"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:autofillHints="meow"
+        android:ems="10"
+        android:hint="@string/tmPrice"
+        android:inputType="textLongMessage"
+        app:layout_constraintStart_toStartOf="@id/tmMaterial"
+        app:layout_constraintEnd_toEndOf="@id/tmMaterial"
+        app:layout_constraintTop_toBottomOf="@id/tmMaterial" />
 
     <Button
-        android:id="@+id/button_second"
+        android:id="@+id/btnUploadItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/button_second"
-        android:onClick="returnReply"
+        android:onClick="collectItemData"
+        android:text="@string/btnUploadItem"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="returnReply"
+        android:text="@string/btnBack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 
 

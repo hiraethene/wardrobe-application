@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mMessageEditText;
     // TextView for the reply header
 
+    private ActivityResultLauncher<Intent> launcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,42 +41,23 @@ public class MainActivity extends AppCompatActivity {
         });
         // Initialize all the view variables.
         mMessageEditText = findViewById(R.id.editText_main);
-    }
 
-    public void onStart() {
-        super.onStart();
-        tToast("onStart");
-    }
+        launcher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            WardrobeItem item = data.getParcelableExtra("newItem");
+                            Log.d(LOG_TAG, "wardrobe item" + item);
 
-    public void onRestart() {
-        super.onRestart();
-        tToast("onRestart");
-    }
-
-    public void onResume() {
-        super.onResume();
-        tToast("onResume");
-    }
-
-    public void onPause() {
-        super.onPause();
-        tToast("onPause");
-    }
-
-    public void onStop() {
-        super.onStop();
-        tToast("onStop");
-    }
-    public void onDestroy() {
-        super.onDestroy();
-        tToast("onDestroy");
-    }
-
-    private void tToast(String s) {
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, s, duration);
-        toast.show();
+                            if (item == null) {
+                                Log.e(LOG_TAG, "item is null");
+                            }
+                        }
+                    }
+                }
+        );
     }
 
     /**
@@ -86,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
     public void launchSecondActivity(View view) {
         Log.d(LOG_TAG, "Button clicked!");
         Intent intent = new Intent(this, SecondActivity.class);
-        String message = mMessageEditText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+        launcher.launch(intent);
+
     }
+
 }
