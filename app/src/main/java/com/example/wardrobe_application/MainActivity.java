@@ -14,7 +14,13 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     //Class name for Log tag
@@ -27,8 +33,13 @@ public class MainActivity extends AppCompatActivity {
     private EditText mMessageEditText;
     // TextView for the reply header
 
+    private TextView tvItemNum;
+
     private ActivityResultLauncher<Intent> launcher;
 
+    RecyclerView rvWardrobe;
+    ArrayList<WardrobeItem> wardrobeItemArrayList = new ArrayList<>();
+    WardrobeAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
         // Initialize all the view variables.
         mMessageEditText = findViewById(R.id.editText_main);
 
+        tvItemNum=findViewById(R.id.tvItemNum);
+
+        rvWardrobe = findViewById(R.id.rvWardrobe);
+        adapter = new WardrobeAdapter(this, wardrobeItemArrayList);
+        rvWardrobe.setAdapter(adapter);
+        rvWardrobe.setLayoutManager(new GridLayoutManager(this, 2));
+
         launcher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -51,8 +69,10 @@ public class MainActivity extends AppCompatActivity {
                             WardrobeItem item = data.getParcelableExtra("newItem");
                             Log.d(LOG_TAG, "wardrobe item" + item);
 
-                            if (item == null) {
-                                Log.e(LOG_TAG, "item is null");
+                            if (item != null) {
+                                wardrobeItemArrayList.add(item);
+                                adapter.notifyItemInserted(wardrobeItemArrayList.size() - 1);
+                                Log.e(LOG_TAG, "Added a new item to the wardrobe");
                             }
                         }
                     }

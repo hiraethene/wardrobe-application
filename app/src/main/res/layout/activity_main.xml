@@ -40,7 +40,7 @@
 
 
     <TextView
-        android:id="@+id/tvNum"
+        android:id="@+id/tvItemNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/itemNum"
@@ -51,7 +51,7 @@
         android:id="@+id/rvWardrobe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvNum"
+        android:layout_below="@id/tvItemNum"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="-3dp"
         android:layout_marginEnd="0dp" />
