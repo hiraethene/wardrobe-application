@@ -23,6 +23,8 @@
     <string name="tmMaterial">Material</string>
     <string name="tmPrice">Price</string>
     <string name="clothingImage" />
+    <string name="description">meowmeow</string>
+    <string name="tvItemNum"></string>
 
     <string-array name ="array_category">
         <item>Select a category</item>
