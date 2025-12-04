@@ -25,6 +25,19 @@
     <string name="clothingImage" />
     <string name="description">meowmeow</string>
     <string name="tvItemNum"></string>
+    <string name="tvItemDetails">Item details</string>
+    <string name="tvAddItemDetails">Add item details</string>
+    <string name="itemImage">Item Image</string>
+    <string name="tvCategoryLabel">Category</string>
+    <string name="tvTitleLabel">Title</string>
+    <string name="tvDescriptionLabel">Description</string>
+    <string name="tvBrandLabel">Brand</string>
+    <string name="tvSizeLabel">Size</string>
+    <string name="tvConditionLabel">Condition</string>
+    <string name="tvColourLabel">Colour</string>
+    <string name="tvMaterialLabel">Material</string>
+    <string name="tvPriceLabel">Price</string>
+
 
     <string-array name ="array_category">
         <item>Select a category</item>

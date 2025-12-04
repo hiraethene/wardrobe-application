@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_data_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ItemDataActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="39dp">
+
+    <TextView
+        android:id="@+id/tvItemDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/tvItemDetails"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivDisplayItemImage"
+        android:layout_width="201dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/itemImage"
+        app:layout_constraintStart_toStartOf="@id/tvItemDetails"
+        app:layout_constraintEnd_toEndOf="@id/tvItemDetails"
+        app:layout_constraintTop_toBottomOf="@id/tvItemDetails"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <TextView
+        android:id="@+id/tvCategoryLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvCategoryLabel"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@id/ivDisplayItemImage"
+        app:layout_constraintEnd_toEndOf="@id/ivDisplayItemImage"
+        app:layout_constraintTop_toBottomOf="@id/ivDisplayItemImage"
+        />
+
+    <TextView
+        android:id="@+id/tvTitleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvTitleLabel"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/tvCategoryLabel"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/tvCategoryLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvCategoryLabel" />
+
+    <TextView
+        android:id="@+id/tvDescriptionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:text="@string/tvDescriptionLabel"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/tvTitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvBrandLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvBrandLabel"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/tvDescription"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/tvDescription"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+
+    <TextView
+        android:id="@+id/tvSizeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvSizeLabel"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvBrandLabel"
+        app:layout_constraintEnd_toEndOf="@id/tvBrandLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvBrandLabel"/>
+
+    <TextView
+        android:id="@+id/tvConditionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvConditionLabel"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvSizeLabel"
+        app:layout_constraintEnd_toEndOf="@id/tvSizeLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvSizeLabel"/>
+
+    <TextView
+        android:id="@+id/tvColourLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvColourLabel"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvConditionLabel"
+        app:layout_constraintEnd_toEndOf="@id/tvConditionLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvConditionLabel" />
+
+    <TextView
+        android:id="@+id/tvMaterialLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvMaterialLabel"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvColourLabel"
+        app:layout_constraintEnd_toEndOf="@id/tvColourLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvColourLabel" />
+
+    <TextView
+        android:id="@+id/tvPriceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/tvPriceLabel"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvMaterialLabel"
+        app:layout_constraintEnd_toEndOf="@id/tvMaterialLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvMaterialLabel" />
+
+
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:text="@string/tvCategory"
+        app:layout_constraintStart_toEndOf="@id/ivDisplayItemImage"
+        app:layout_constraintEnd_toEndOf="@id/ivDisplayItemImage"
+        app:layout_constraintTop_toBottomOf="@id/ivDisplayItemImage"
+        />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:autofillHints="meow"
+        android:ems="10"
+        android:text="@string/tvTitle"
+        app:layout_constraintStart_toStartOf="@id/tvCategory"
+        app:layout_constraintEnd_toEndOf="@id/tvCategory"
+        app:layout_constraintTop_toBottomOf="@id/tvCategory"
+        />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="222dp"
+        android:layout_height="80dp"
+        android:autofillHints="meow"
+        android:ems="10"
+        android:text="@string/tvDescription"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvBrand"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:autofillHints="meow"
+        android:ems="10"
+        android:text="@string/tvBrand"
+        app:layout_constraintStart_toStartOf="@id/tvDescription"
+        app:layout_constraintEnd_toEndOf="@id/tvDescription"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription"  />
+
+    <TextView
+        android:id="@+id/tvSize"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:text="@string/tvSize"
+        app:layout_constraintStart_toStartOf="@id/tvBrand"
+        app:layout_constraintEnd_toEndOf="@id/tvBrand"
+        app:layout_constraintTop_toBottomOf="@id/tvBrand"  />
+
+    <TextView
+        android:id="@+id/tvCondition"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:text="@string/tvCondition"
+        app:layout_constraintStart_toStartOf="@id/tvSize"
+        app:layout_constraintEnd_toEndOf="@id/tvSize"
+        app:layout_constraintTop_toBottomOf="@id/tvSize" />
+
+    <TextView
+        android:id="@+id/tvColour"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:text="@string/tvColour"
+        app:layout_constraintStart_toStartOf="@id/tvCondition"
+        app:layout_constraintEnd_toEndOf="@id/tvCondition"
+        app:layout_constraintTop_toBottomOf="@id/tvCondition" />
+
+    <TextView
+        android:id="@+id/tvMaterial"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:autofillHints="meow"
+        android:ems="10"
+        android:text="@string/tvMaterial"
+        app:layout_constraintStart_toStartOf="@id/tvColour"
+        app:layout_constraintEnd_toEndOf="@id/tvColour"
+        app:layout_constraintTop_toBottomOf="@id/tvColour" />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:autofillHints="meow"
+        android:ems="10"
+        android:text="@string/tvPrice"
+        app:layout_constraintStart_toStartOf="@id/tvMaterial"
+        app:layout_constraintEnd_toEndOf="@id/tvMaterial"
+        app:layout_constraintTop_toBottomOf="@id/tvMaterial" />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="returnToMainActivity"
+        android:text="@string/btnBack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
