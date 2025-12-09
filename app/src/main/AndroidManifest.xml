@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wardrobeapplication">
         <activity
+            android:name=".ItemDataActivity"
+            android:exported="false"
+            />
+        <activity
             android:name=".SecondActivity"
             android:exported="false" />
         <activity

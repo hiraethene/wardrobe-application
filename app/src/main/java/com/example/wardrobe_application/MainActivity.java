@@ -26,12 +26,6 @@ public class MainActivity extends AppCompatActivity {
     //Class name for Log tag
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     // Unique tag required for the intent extra
-    public static final String EXTRA_MESSAGE
-            = "com.example.android.twoactivitiesmessagepass.extra.MESSAGE";
-
-    // EditText view for the message
-    private EditText mMessageEditText;
-    // TextView for the reply header
 
     private TextView tvItemNum;
 
@@ -51,11 +45,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         // Initialize all the view variables.
-        mMessageEditText = findViewById(R.id.editText_main);
         tvItemNum = findViewById(R.id.tvItemNum);
-
         rvWardrobe = findViewById(R.id.rvWardrobe);
+
+
         adapter = new WardrobeAdapter(this, wardrobeItemArrayList);
+        adapter.setOnItemClickListener(this::launchItemDataActivity);
         rvWardrobe.setAdapter(adapter);
         rvWardrobe.setLayoutManager(new GridLayoutManager(this, 2));
 
@@ -94,6 +89,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SecondActivity.class);
         launcher.launch(intent);
 
+    }
+
+    public void launchItemDataActivity(WardrobeItem item) {
+        Log.d(LOG_TAG, "ImageView clicked!");
+        Intent intent = new Intent(this, ItemDataActivity.class);
+        intent.putExtra("selectedItem", item);
+        launcher.launch(intent);
     }
 //Returns the number of items in array list
 // and adds one to make it intuitive for users as lists start from 0

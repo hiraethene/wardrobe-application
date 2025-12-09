@@ -41,13 +41,32 @@ public class WardrobeAdapter extends RecyclerView.Adapter<WardrobeAdapter.ViewHo
                 .load(imageUri)
                 .centerCrop()
                 .into(holder.ivItemImage);
+
+        //sets the click listener for the image view
+        holder.ivItemImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(item);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        //returns number of card items in the recyler view
+        //returns number of card items in the recycler view
         return wardrobeItemArrayList.size();
     }
+
+    private onItemClickListener listener;
+    //interface for  the click listener
+    public interface onItemClickListener{
+        void onItemClick(WardrobeItem item);
+    }
+    //sets the click listener for the adapter
+    public void setOnItemClickListener(onItemClickListener listener) {
+        this.listener = listener;
+    }
+
 
     //ViewHolder class for initialising views
     public static class ViewHolder extends RecyclerView.ViewHolder {

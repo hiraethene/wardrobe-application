@@ -9,6 +9,17 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="39dp">
 
+    <Button
+        android:id="@+id/btnBackToMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="308dp"
+        android:layout_marginBottom="4dp"
+        android:onClick="returnReply"
+        android:text="@string/btnBack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/tvItemDetails"
         android:layout_width="wrap_content"
@@ -59,10 +70,10 @@
         android:layout_height="80dp"
         android:text="@string/tvDescriptionLabel"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="@id/tvTitleLabel"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/tvTitle"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        app:layout_constraintStart_toStartOf="@id/tvTitleLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleLabel" />
 
     <TextView
         android:id="@+id/tvBrandLabel"
@@ -70,10 +81,10 @@
         android:layout_height="40dp"
         android:text="@string/tvBrandLabel"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@id/tvDescription"
+        app:layout_constraintEnd_toEndOf="@id/tvDescriptionLabel"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/tvDescription"
-        app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+        app:layout_constraintStart_toStartOf="@id/tvDescriptionLabel"
+        app:layout_constraintTop_toBottomOf="@id/tvDescriptionLabel" />
 
     <TextView
         android:id="@+id/tvSizeLabel"
@@ -130,7 +141,6 @@
         android:id="@+id/tvCategory"
         android:layout_width="222dp"
         android:layout_height="40dp"
-        android:text="@string/tvCategory"
         app:layout_constraintStart_toEndOf="@id/ivDisplayItemImage"
         app:layout_constraintEnd_toEndOf="@id/ivDisplayItemImage"
         app:layout_constraintTop_toBottomOf="@id/ivDisplayItemImage"
@@ -142,7 +152,6 @@
         android:layout_height="40dp"
         android:autofillHints="meow"
         android:ems="10"
-        android:text="@string/tvTitle"
         app:layout_constraintStart_toStartOf="@id/tvCategory"
         app:layout_constraintEnd_toEndOf="@id/tvCategory"
         app:layout_constraintTop_toBottomOf="@id/tvCategory"
@@ -154,7 +163,6 @@
         android:layout_height="80dp"
         android:autofillHints="meow"
         android:ems="10"
-        android:text="@string/tvDescription"
         app:layout_constraintStart_toStartOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="@id/tvTitle"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
@@ -165,7 +173,6 @@
         android:layout_height="40dp"
         android:autofillHints="meow"
         android:ems="10"
-        android:text="@string/tvBrand"
         app:layout_constraintStart_toStartOf="@id/tvDescription"
         app:layout_constraintEnd_toEndOf="@id/tvDescription"
         app:layout_constraintTop_toBottomOf="@id/tvDescription"  />
@@ -174,7 +181,6 @@
         android:id="@+id/tvSize"
         android:layout_width="222dp"
         android:layout_height="40dp"
-        android:text="@string/tvSize"
         app:layout_constraintStart_toStartOf="@id/tvBrand"
         app:layout_constraintEnd_toEndOf="@id/tvBrand"
         app:layout_constraintTop_toBottomOf="@id/tvBrand"  />
@@ -183,7 +189,6 @@
         android:id="@+id/tvCondition"
         android:layout_width="222dp"
         android:layout_height="40dp"
-        android:text="@string/tvCondition"
         app:layout_constraintStart_toStartOf="@id/tvSize"
         app:layout_constraintEnd_toEndOf="@id/tvSize"
         app:layout_constraintTop_toBottomOf="@id/tvSize" />
@@ -192,7 +197,6 @@
         android:id="@+id/tvColour"
         android:layout_width="222dp"
         android:layout_height="40dp"
-        android:text="@string/tvColour"
         app:layout_constraintStart_toStartOf="@id/tvCondition"
         app:layout_constraintEnd_toEndOf="@id/tvCondition"
         app:layout_constraintTop_toBottomOf="@id/tvCondition" />
@@ -203,7 +207,6 @@
         android:layout_height="40dp"
         android:autofillHints="meow"
         android:ems="10"
-        android:text="@string/tvMaterial"
         app:layout_constraintStart_toStartOf="@id/tvColour"
         app:layout_constraintEnd_toEndOf="@id/tvColour"
         app:layout_constraintTop_toBottomOf="@id/tvColour" />
@@ -214,7 +217,6 @@
         android:layout_height="40dp"
         android:autofillHints="meow"
         android:ems="10"
-        android:text="@string/tvPrice"
         app:layout_constraintStart_toStartOf="@id/tvMaterial"
         app:layout_constraintEnd_toEndOf="@id/tvMaterial"
         app:layout_constraintTop_toBottomOf="@id/tvMaterial" />
@@ -226,7 +228,7 @@
         android:onClick="returnToMainActivity"
         android:text="@string/btnBack"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

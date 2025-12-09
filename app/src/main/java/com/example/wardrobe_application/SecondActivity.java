@@ -101,7 +101,6 @@ public class SecondActivity extends AppCompatActivity {
         // Get the intent that launched this activity, and the message in
         // the intent extra.
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         // Put that message into the text_message TextView
         //TextView textView = findViewById(R.id.tm);

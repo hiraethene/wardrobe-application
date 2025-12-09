@@ -37,6 +37,7 @@
     <string name="tvColourLabel">Colour</string>
     <string name="tvMaterialLabel">Material</string>
     <string name="tvPriceLabel">Price</string>
+    <string name="btnImageUpload">Where users upload their item image</string>
 
 
     <string-array name ="array_category">
