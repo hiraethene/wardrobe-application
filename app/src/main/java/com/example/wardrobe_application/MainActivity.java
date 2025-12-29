@@ -1,11 +1,14 @@
 package com.example.wardrobe_application;
 
+import static android.graphics.Insets.add;
+
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -19,6 +22,14 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvWardrobe;
     ArrayList<WardrobeItem> wardrobeItemArrayList = new ArrayList<>();
     WardrobeAdapter adapter;
+    private FirebaseApp FireBaseApp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +56,10 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+            //loadWardrobeFromFirestore();
         });
+
+        FireBaseApp.initializeApp(this);
         // Initialize all the view variables.
         tvItemNum = findViewById(R.id.tvItemNum);
         rvWardrobe = findViewById(R.id.rvWardrobe);
@@ -65,11 +81,25 @@ public class MainActivity extends AppCompatActivity {
 
                             if (item != null) {
                                 getCurrentItemCount();
-                                wardrobeItemArrayList.add(item);
-                                adapter.notifyItemInserted(wardrobeItemArrayList.size() - 1);
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                db.collection("wardrobe")
+                                .add(item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Log.d(LOG_TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
 
+                                                wardrobeItemArrayList.add(item);
+                                                adapter.notifyItemInserted(wardrobeItemArrayList.size() - 1);
+                                                Log.e(LOG_TAG, "Added a new item to the wardrobe");
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w(LOG_TAG, "Error adding document", e);
+                                                }
+                                        });
 
-                                Log.e(LOG_TAG, "Added a new item to the wardrobe");
                             }
                         }
                     }
@@ -95,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "ImageView clicked!");
         Intent intent = new Intent(this, ItemDataActivity.class);
         intent.putExtra("selectedItem", item);
-        launcher.launch(intent);
+        startActivity(intent);
     }
 //Returns the number of items in array list
 // and adds one to make it intuitive for users as lists start from 0
@@ -113,4 +143,13 @@ public class MainActivity extends AppCompatActivity {
         tvItemNum.setText(strItemCount);
     }
 
-}
+//    //public void loadWardrobeFromFirestore() {
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        db.collection("wardrobe")
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<querySnapshot>() {
+//                    for (
+//                    DocumentSnapshot document : querySnapshot.getChildren() )
+//                }
+
+    }

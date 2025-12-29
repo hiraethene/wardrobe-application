@@ -15,15 +15,18 @@ public class WardrobeItem implements Parcelable {
     public String itemMaterial;
     public String itemPrice;
 
+    public String getItemImage() {
+        return itemImage;
+    }
     public WardrobeItem() {
 
     }
 
-    public WardrobeItem(String image,String category, String title, String description, String brand, String size, String condition, String colour, String material,String price){
+    public WardrobeItem(String image, String category, String title, String description, String brand, String size, String condition, String colour, String material, String price) {
         itemImage = image;
         itemCategory = category;
         itemTitle = title;
-        itemDescription = description ;
+        itemDescription = description;
         itemBrand = brand;
         itemSize = size;
         itemCondition = condition;
@@ -57,9 +60,14 @@ public class WardrobeItem implements Parcelable {
 
         @Override
         public WardrobeItem[] newArray(int size) {
-        return new WardrobeItem[size];
+            return new WardrobeItem[size];
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -74,11 +82,4 @@ public class WardrobeItem implements Parcelable {
         dest.writeString(itemMaterial);
         dest.writeString(itemPrice);
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-
 }

@@ -35,10 +35,12 @@ public class WardrobeAdapter extends RecyclerView.Adapter<WardrobeAdapter.ViewHo
         //sets data to imageview of each card layout
         WardrobeItem item = wardrobeItemArrayList.get(position);
 
-        Uri imageUri = Uri.parse(item.itemImage);
+        //Uri imageUri = Uri.parse(item.itemImage);
 
-        Glide.with(context)
-                .load(imageUri)
+
+        holder.ivItemImage.setImageDrawable(null);
+        Glide.with(holder.itemView.getContext())
+                .load(item.getItemImage())
                 .centerCrop()
                 .into(holder.ivItemImage);
 
