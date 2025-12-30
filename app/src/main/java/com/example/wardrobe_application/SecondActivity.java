@@ -18,6 +18,9 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 import java.io.IOException;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 
 
 public class SecondActivity extends AppCompatActivity {
@@ -33,21 +36,26 @@ public class SecondActivity extends AppCompatActivity {
     private EditText tmMaterial;
     private EditText tmPrice;
 
+    private Uri selectedImageUri;
+
 
     ActivityResultLauncher<Intent> launchGallery;
+    private ActivityResultLauncher<String> imagePickerLauncher;
 
     /**
      * Initializes the activity.
      *
      * @param savedInstanceState The current state data
-     */;
+     */
+    ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
         //setting up dropdown functionality for category spinner
-        spCategory = (Spinner) findViewById (R.id.spCategory);
+        spCategory = (Spinner) findViewById(R.id.spCategory);
         //creates an array adapter using the category string array
         ArrayAdapter<CharSequence> adapter_category = ArrayAdapter.createFromResource(
                 this,
@@ -60,7 +68,7 @@ public class SecondActivity extends AppCompatActivity {
         spCategory.setAdapter(adapter_category);
 
         //setting up dropdown functionality for size spinner
-        spSize = (Spinner) findViewById (R.id.spSize);
+        spSize = (Spinner) findViewById(R.id.spSize);
         //creates an array adapter using the size string array
         ArrayAdapter<CharSequence> adapter_size = ArrayAdapter.createFromResource(
                 this,
@@ -73,7 +81,7 @@ public class SecondActivity extends AppCompatActivity {
         spSize.setAdapter(adapter_size);
 
         //setting up dropdown functionality for condition spinner
-        spCondition = (Spinner) findViewById (R.id.spCondition);
+        spCondition = (Spinner) findViewById(R.id.spCondition);
         //creates an array adapter using the condition string array
         ArrayAdapter<CharSequence> adapter_condition = ArrayAdapter.createFromResource(
                 this,
@@ -86,7 +94,7 @@ public class SecondActivity extends AppCompatActivity {
         spCondition.setAdapter(adapter_condition);
 
         //setting up dropdown functionality for colour spinner
-        spColour = (Spinner) findViewById (R.id.spColour);
+        spColour = (Spinner) findViewById(R.id.spColour);
         //creates an array adapter using the colour string array
         ArrayAdapter<CharSequence> adapter_colour = ArrayAdapter.createFromResource(
                 this,
@@ -104,7 +112,7 @@ public class SecondActivity extends AppCompatActivity {
 
         // Put that message into the text_message TextView
         //TextView textView = findViewById(R.id.tm);
-       // textView.setText(message);
+        // textView.setText(message);
 
         imageButton = findViewById(R.id.btnImageUpload);
 
@@ -115,9 +123,10 @@ public class SecondActivity extends AppCompatActivity {
                         Intent data = result.getData();
                         if (data != null
                                 && data.getData() != null) {
-                            Uri selectedImageUri = data.getData();
+                            Uri uri = data.getData();
+                            selectedImageUri = uri;
                             //saves the image
-                            imageButton.setTag(selectedImageUri);
+                            imageButton.setTag(uri);
                             try {
                                 Bitmap selectedImageBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
                                 imageButton.setImageBitmap(selectedImageBitmap);
@@ -133,11 +142,12 @@ public class SecondActivity extends AppCompatActivity {
         imageButton.setOnClickListener(view -> openGallery());
 
     }
-        public void openGallery() {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            intent.setType("image/*");
-            launchGallery.launch(intent);
-        }
+
+    public void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        launchGallery.launch(intent);
+    }
 
     /**
      * Handles the onClick for the "Return" button.
@@ -156,16 +166,16 @@ public class SecondActivity extends AppCompatActivity {
         spCategory = (Spinner) findViewById(R.id.spCategory);
         String category = spCategory.getSelectedItem().toString();
 
-        tmTitle = (EditText)findViewById(R.id.tmTitle);
+        tmTitle = (EditText) findViewById(R.id.tmTitle);
         String title = tmTitle.getText().toString();
 
-        tmDescription = (EditText)findViewById(R.id.tmDescription);
+        tmDescription = (EditText) findViewById(R.id.tmDescription);
         String description = tmDescription.getText().toString();
 
-        tmBrand = (EditText)findViewById(R.id.tmBrand);
+        tmBrand = (EditText) findViewById(R.id.tmBrand);
         String brand = tmBrand.getText().toString();
 
-        spSize = (Spinner)findViewById(R.id.spSize);
+        spSize = (Spinner) findViewById(R.id.spSize);
         String size = spSize.getSelectedItem().toString();
 
         spCondition = (Spinner) findViewById(R.id.spCondition);
@@ -174,40 +184,53 @@ public class SecondActivity extends AppCompatActivity {
         spColour = (Spinner) findViewById(R.id.spColour);
         String colour = spColour.getSelectedItem().toString();
 
-        tmMaterial = (EditText)findViewById(R.id.tmMaterial);
+        tmMaterial = (EditText) findViewById(R.id.tmMaterial);
         String material = tmMaterial.getText().toString();
 
-        tmPrice = (EditText)findViewById(R.id.tmPrice);
-        String price = tmPrice.getText().toString().trim();
-        if (price.isEmpty()) price = "0";
+        tmPrice = (EditText) findViewById(R.id.tmPrice);
+        //meow
+        final String price = tmPrice.getText().toString().trim().isEmpty() ? "0" : tmPrice.getText().toString().trim();
+
 
         System.out.println(category + "," + title + "," + description + "," + brand + "," + size + "," + condition + "," + colour + "," + material + "," + price);
 
         //getting the image uri
-        Uri selectedImageUri = (Uri) imageButton.getTag();
-        String imageUriString = selectedImageUri == null ? "" : selectedImageUri.toString();
+        if (selectedImageUri == null) {
+            Log.e("second activity" , "No image selected");
+            return;
+        }
 
-        //wardrobe object
-        WardrobeItem item = new WardrobeItem(
-                imageUriString,
-                category,
-                title,
-                description,
-                brand,
-                size,
-                condition,
-                colour,
-                material,
-                price
-        );
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference()
+                .child("wardrobe_images/" + System.currentTimeMillis() + ".jpg");
 
-        Intent returnDataIntent = new Intent();
-        returnDataIntent.putExtra("newItem", item);
-        setResult(RESULT_OK, returnDataIntent);
-        finish();
+        storageRef.putFile(selectedImageUri)
+                .addOnSuccessListener(taskSnapshot ->
+                        storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                            String downloadUrl = uri.toString();
+
+                            // create the item object
+                            WardrobeItem item = new WardrobeItem(
+                                    downloadUrl,
+                                    category,
+                                    title,
+                                    description,
+                                    brand,
+                                    size,
+                                    condition,
+                                    colour,
+                                    material,
+                                    price
+                            );
+                            // Return the item to the main activity
+                            Intent returnDataIntent = new Intent();
+                            returnDataIntent.putExtra("newItem", item);
+                            setResult(RESULT_OK, returnDataIntent);
+                            finish();
+                        })
+                )
+                .addOnFailureListener(e ->
+                        Log.e("Image upload failed", "Image upload failed"));
 
     }
-
-
-
 }

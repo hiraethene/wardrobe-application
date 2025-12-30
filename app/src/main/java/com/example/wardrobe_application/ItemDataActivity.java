@@ -63,9 +63,10 @@ ImageView ivDisplayItemImage;
         tvMaterial.setText(item.itemMaterial);
         tvPrice.setText(item.itemPrice);
 
-       // Glide.with(this)
-       //         .load(item.itemImage)
-        //        .centerCrop()
-       //         .into(ivDisplayItemImage);
+        // Load image with firebase url
+        Glide.with(this)
+                .load(item.itemImage)
+                .centerCrop()
+                .into(ivDisplayItemImage);
     }
 }

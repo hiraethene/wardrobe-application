@@ -41,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tvItemNum;
 
-    private ActivityResultLauncher<Intent> launcher;
+    private ActivityResultLauncher<Intent> addItemLauncher;
+    // Launcher to handle image picking from gallery
+
+
 
     RecyclerView rvWardrobe;
     ArrayList<WardrobeItem> wardrobeItemArrayList = new ArrayList<>();
@@ -59,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         FireBaseApp.initializeApp(this);
-        loadWardrobeFromFirestore();
         // Initialize all the view variables.
         tvItemNum = findViewById(R.id.tvItemNum);
         rvWardrobe = findViewById(R.id.rvWardrobe);
@@ -70,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
         rvWardrobe.setAdapter(adapter);
         rvWardrobe.setLayoutManager(new GridLayoutManager(this, 2));
 
-        launcher = registerForActivityResult(
+        loadWardrobeFromFirestore();
+
+        addItemLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK) {
@@ -90,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
                                                 wardrobeItemArrayList.add(item);
                                                 adapter.notifyItemInserted(wardrobeItemArrayList.size() - 1);
+                                                getCurrentItemCount();
                                                 Log.e(LOG_TAG, "Added a new item to the wardrobe");
                                             }
                                         })
@@ -117,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     public void launchSecondActivity(View view) {
         Log.d(LOG_TAG, "Button clicked!");
         Intent intent = new Intent(this, SecondActivity.class);
-        launcher.launch(intent);
+        addItemLauncher.launch(intent);
 
     }
 
