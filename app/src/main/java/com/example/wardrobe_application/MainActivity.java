@@ -29,6 +29,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -56,10 +57,9 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-            //loadWardrobeFromFirestore();
         });
-
         FireBaseApp.initializeApp(this);
+        loadWardrobeFromFirestore();
         // Initialize all the view variables.
         tvItemNum = findViewById(R.id.tvItemNum);
         rvWardrobe = findViewById(R.id.rvWardrobe);
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 //Returns the number of items in array list
 // and adds one to make it intuitive for users as lists start from 0
     public void getCurrentItemCount() {
-        int itemCount = wardrobeItemArrayList.size() + 1;
+        int itemCount = wardrobeItemArrayList.size();
         String strItemCount;
 
         if (itemCount == 1) {
@@ -143,13 +143,32 @@ public class MainActivity extends AppCompatActivity {
         tvItemNum.setText(strItemCount);
     }
 
-//    //public void loadWardrobeFromFirestore() {
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        db.collection("wardrobe")
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<querySnapshot>() {
-//                    for (
-//                    DocumentSnapshot document : querySnapshot.getChildren() )
-//                }
+   public void loadWardrobeFromFirestore() {
+      FirebaseFirestore db = FirebaseFirestore.getInstance();
+      db.collection("wardrobe")
+              .get()
+              .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                  @Override
+                  public void onSuccess(QuerySnapshot querySnapshot) {
+                      wardrobeItemArrayList.clear();
 
-    }
+                      for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+                          WardrobeItem item = document.toObject(WardrobeItem.class);
+
+                          if (item != null) {
+                              wardrobeItemArrayList.add(item);
+                          }
+                      }
+                      adapter.notifyDataSetChanged();
+                      getCurrentItemCount();
+                  }
+              })
+              .addOnFailureListener(new OnFailureListener() {
+                  @Override
+                  public void onFailure(@NonNull Exception e) {
+                      Log.e(LOG_TAG, "Error loading wardrobe from Firestore",e);
+                  }
+              });
+
+       }
+}
