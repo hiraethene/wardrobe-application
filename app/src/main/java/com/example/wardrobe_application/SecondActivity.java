@@ -18,6 +18,8 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 import java.io.IOException;
+
+import com.bumptech.glide.Glide;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -127,15 +129,12 @@ public class SecondActivity extends AppCompatActivity {
                             selectedImageUri = uri;
                             //saves the image
                             imageButton.setTag(uri);
-                            try {
-                                Bitmap selectedImageBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                                imageButton.setImageBitmap(selectedImageBitmap);
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
-
+                            Glide.with(this)
+                                    .load(selectedImageUri)
+                                    .centerCrop()
+                                    .into(imageButton);
                             }
-                        }
                     }
                 }
         );

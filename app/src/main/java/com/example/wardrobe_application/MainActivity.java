@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityResultLauncher<Intent> addItemLauncher;
     // Launcher to handle image picking from gallery
 
-
+    private String documentID;
 
     RecyclerView rvWardrobe;
     ArrayList<WardrobeItem> wardrobeItemArrayList = new ArrayList<>();
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(DocumentReference documentReference) {
                                                 Log.d(LOG_TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-
+                                                item.documentID = documentReference.getId();
                                                 wardrobeItemArrayList.add(item);
                                                 adapter.notifyItemInserted(wardrobeItemArrayList.size() - 1);
                                                 getCurrentItemCount();

@@ -37,7 +37,7 @@ ImageView ivDisplayItemImage;
 
 
         WardrobeItem item = getIntent().getParcelableExtra("selectedItem");
-        populateTextViews(item);
+        populateViews(item);
 
         Intent intent = getIntent();
     }
@@ -52,7 +52,7 @@ ImageView ivDisplayItemImage;
         finish();
     }
 
-    public void populateTextViews(WardrobeItem item) {
+    public void populateViews(WardrobeItem item) {
         tvCategory.setText(item.itemCategory);
         tvTitle.setText(item.itemTitle);
         tvDescription.setText(item.itemDescription);
@@ -68,5 +68,14 @@ ImageView ivDisplayItemImage;
                 .load(item.itemImage)
                 .centerCrop()
                 .into(ivDisplayItemImage);
+    }
+
+    public void deleteItem(WardrobeItem item) {
+        //load the item
+        //remove from wardrobe list and fire store?
+        if (item.documentID != null) {
+     //       FirebaseFirestore db = FirebaseFirestore.getInstance();
+     //        bvgfe\
+        }
     }
 }

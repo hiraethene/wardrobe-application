@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class WardrobeItem implements Parcelable {
+    public String documentID;
     public String itemImage;
     public String itemCategory;
     public String itemTitle;
@@ -36,6 +37,7 @@ public class WardrobeItem implements Parcelable {
     }
 
     private WardrobeItem(Parcel in) {
+        documentID = in.readString();
         itemImage = in.readString();
         itemCategory = in.readString();
         itemTitle = in.readString();
@@ -71,6 +73,7 @@ public class WardrobeItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(documentID);
         dest.writeString(itemImage);
         dest.writeString(itemCategory);
         dest.writeString(itemTitle);

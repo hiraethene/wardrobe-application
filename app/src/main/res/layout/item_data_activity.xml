@@ -10,12 +10,22 @@
     tools:layout_editor_absoluteY="39dp">
 
     <Button
+        android:id="@+id/btnDeleteItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/btnDeleteItem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
         android:id="@+id/btnBackToMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="308dp"
         android:layout_marginBottom="4dp"
-        android:onClick="returnReply"
+        android:onClick="returnToMainActivity"
         android:text="@string/btnBack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -220,15 +230,5 @@
         app:layout_constraintStart_toStartOf="@id/tvMaterial"
         app:layout_constraintEnd_toEndOf="@id/tvMaterial"
         app:layout_constraintTop_toBottomOf="@id/tvMaterial" />
-
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="returnToMainActivity"
-        android:text="@string/btnBack"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
