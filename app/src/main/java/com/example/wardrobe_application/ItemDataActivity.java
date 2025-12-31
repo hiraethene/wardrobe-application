@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 
 public class ItemDataActivity extends Activity {
@@ -70,12 +73,30 @@ ImageView ivDisplayItemImage;
                 .into(ivDisplayItemImage);
     }
 
+    public void onDeleteButtonClick(View view) {
+        WardrobeItem item = getIntent().getParcelableExtra("selectedItem");
+        deleteItem(item);
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("deletedItemID", item.documentID);
+        setResult(RESULT_OK, resultIntent);
+        finish();
+    }
     public void deleteItem(WardrobeItem item) {
-        //load the item
         //remove from wardrobe list and fire store?
         if (item.documentID != null) {
-     //       FirebaseFirestore db = FirebaseFirestore.getInstance();
-     //        bvgfe\
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("wardrobe").document(item.documentID)
+                    .delete()
+                    .addOnSuccessListener(aVoid -> Log.d("Delete","document snapshot successfully deleted"))
+                    .addOnFailureListener(e -> Log.w("Delete,","Error deleting document",e));
+        }
+        // Deletes the item from firebase storage
+        if (item.itemImage != null && !item.itemImage.isEmpty()) {
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference imageRef = storage.getReferenceFromUrl(item.itemImage);
+            imageRef.delete()
+                    .addOnSuccessListener(aVoid -> Log.d("Delete","Image successfully deleted"))
+                    .addOnFailureListener(e -> Log.w("Delete,","Error deleting image",e));
         }
     }
 }

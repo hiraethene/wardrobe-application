@@ -26,7 +26,7 @@ public class WardrobeAdapter extends RecyclerView.Adapter<WardrobeAdapter.ViewHo
     @Override
     public WardrobeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //inflates layout of each item of recycler view
-        View view =LayoutInflater.from(parent.getContext()).inflate(R.layout.wardrobe_card_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wardrobe_card_layout, parent, false);
         return new ViewHolder(view);
     }
 
@@ -34,9 +34,6 @@ public class WardrobeAdapter extends RecyclerView.Adapter<WardrobeAdapter.ViewHo
     public void onBindViewHolder(@NonNull WardrobeAdapter.ViewHolder holder, int position) {
         //sets data to imageview of each card layout
         WardrobeItem item = wardrobeItemArrayList.get(position);
-
-        //Uri imageUri = Uri.parse(item.itemImage);
-
 
         holder.ivItemImage.setImageDrawable(null);
         Glide.with(holder.itemView.getContext())
@@ -47,12 +44,20 @@ public class WardrobeAdapter extends RecyclerView.Adapter<WardrobeAdapter.ViewHo
         //sets the click listener for the image view
         holder.ivItemImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 listener.onItemClick(item);
             }
         });
+
     }
 
+    public void removeItem(WardrobeItem item) {
+        int pos = wardrobeItemArrayList.indexOf(item);
+        if (pos != -1) {
+            wardrobeItemArrayList.remove(pos);
+            notifyItemRemoved(pos);
+        }
+    }
     @Override
     public int getItemCount() {
         //returns number of card items in the recycler view
@@ -60,25 +65,29 @@ public class WardrobeAdapter extends RecyclerView.Adapter<WardrobeAdapter.ViewHo
     }
 
     private onItemClickListener listener;
+
     //interface for  the click listener
-    public interface onItemClickListener{
+    public interface onItemClickListener {
         void onItemClick(WardrobeItem item);
-    }
-    //sets the click listener for the adapter
-    public void setOnItemClickListener(onItemClickListener listener) {
-        this.listener = listener;
+
     }
 
-
-    //ViewHolder class for initialising views
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivItemImage;
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            ivItemImage = itemView.findViewById(R.id.ivItemImage);
+        //sets the click listener for the adapter
+        public void setOnItemClickListener(onItemClickListener listener) {
+            this.listener = listener;
         }
+
+        //ViewHolder class for initialising views
+        public static class ViewHolder extends RecyclerView.ViewHolder {
+            ImageView ivItemImage;
+
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                ivItemImage = itemView.findViewById(R.id.ivItemImage);
+            }
+        }
+
+
     }
 
-
-}
 

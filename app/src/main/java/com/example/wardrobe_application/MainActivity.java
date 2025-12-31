@@ -9,6 +9,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -112,6 +113,21 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ((requestCode == 100 && (resultCode == RESULT_OK) && (data != null))) {
+            String deletedID = data.getStringExtra("deletedItemID");
+
+            // Removes item from list and adapter
+            for (int i =0; i < wardrobeItemArrayList.size(); i++) {
+                if (wardrobeItemArrayList.get(i).documentID.equals(deletedID)) {
+                    adapter.removeItem(wardrobeItemArrayList.get(i));
+                }
+            }
+        }
+    }
+
     /**
      * Handles the onClick for the "Send" button. Gets the value of the main EditText,
      * creates an intent, and launches the second activity with that intent.
@@ -130,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "ImageView clicked!");
         Intent intent = new Intent(this, ItemDataActivity.class);
         intent.putExtra("selectedItem", item);
-        startActivity(intent);
+        startActivityForResult(intent, 100);
     }
 //Returns the number of items in array list
 // and adds one to make it intuitive for users as lists start from 0
@@ -161,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
                           WardrobeItem item = document.toObject(WardrobeItem.class);
 
                           if (item != null) {
+                              item.documentID = document.getId();
                               wardrobeItemArrayList.add(item);
                           }
                       }
