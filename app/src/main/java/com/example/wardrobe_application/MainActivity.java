@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
                                                 Log.w(LOG_TAG, "Error adding document", e);
                                                 }
                                         });
-
                             }
                         }
                     }
@@ -125,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                     adapter.removeItem(wardrobeItemArrayList.get(i));
                 }
             }
+            getCurrentItemCount();
         }
     }
 
@@ -148,8 +148,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("selectedItem", item);
         startActivityForResult(intent, 100);
     }
-//Returns the number of items in array list
-// and adds one to make it intuitive for users as lists start from 0
+    //Returns the number of items in array list
+    // and adds one to make it intuitive for users as lists start from 0
     public void getCurrentItemCount() {
         int itemCount = wardrobeItemArrayList.size();
         String strItemCount;

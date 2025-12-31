@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageButton;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -159,45 +160,118 @@ public class SecondActivity extends AppCompatActivity {
         setResult(RESULT_CANCELED, returnIntent);
         finish();
     }
+    private boolean isEmpty(EditText editText,String errorMessage) {
+        if (editText.getText().toString().trim().isEmpty()){
+            editText.setError(errorMessage);
+            editText.requestFocus();
+            return true;
+        }
+        return false;
+    }
 
+    private boolean isSpinnerDefault(Spinner spinner, String errorMessage) {
+        if (spinner.getSelectedItemPosition() == 0) {
+            TextView errorText = (TextView) spinner.getSelectedView();
+            if (errorText != null) {
+                errorText.setError("");
+                errorText.setTextColor(getResources().getColor((android.R.color.holo_red_dark)));
+                errorText.setText(errorMessage);
+            }
+            spinner.requestFocus();
+            return true;
+        }
+        return false;
+    }
     public void collectItemData(View view) {
-        //COLLECT SPINNER AND EDIT TEXT DATA
+        // Collects Spinner and EditText references
         spCategory = (Spinner) findViewById(R.id.spCategory);
-        String category = spCategory.getSelectedItem().toString();
-
         tmTitle = (EditText) findViewById(R.id.tmTitle);
-        String title = tmTitle.getText().toString();
-
         tmDescription = (EditText) findViewById(R.id.tmDescription);
-        String description = tmDescription.getText().toString();
-
         tmBrand = (EditText) findViewById(R.id.tmBrand);
-        String brand = tmBrand.getText().toString();
-
         spSize = (Spinner) findViewById(R.id.spSize);
-        String size = spSize.getSelectedItem().toString();
-
         spCondition = (Spinner) findViewById(R.id.spCondition);
-        String condition = spCondition.getSelectedItem().toString();
-
         spColour = (Spinner) findViewById(R.id.spColour);
-        String colour = spColour.getSelectedItem().toString();
-
         tmMaterial = (EditText) findViewById(R.id.tmMaterial);
-        String material = tmMaterial.getText().toString();
-
         tmPrice = (EditText) findViewById(R.id.tmPrice);
-        //meow
-        final String price = tmPrice.getText().toString().trim().isEmpty() ? "0" : tmPrice.getText().toString().trim();
 
-
-        System.out.println(category + "," + title + "," + description + "," + brand + "," + size + "," + condition + "," + colour + "," + material + "," + price);
-
-        //getting the image uri
-        if (selectedImageUri == null) {
-            Log.e("second activity" , "No image selected");
+        // Validates EditTexts
+        if (tmTitle.getText().toString().trim().isEmpty()) {
+            tmTitle.setError("Title field is empty. Title required.");
             return;
         }
+        if (tmDescription.getText().toString().trim().isEmpty()) {
+            tmDescription.setError("Description field is empty. Description required.");
+            return;
+        }
+        if (tmBrand.getText().toString().trim().isEmpty()) {
+            tmBrand.setError("Brand field is empty. Brand required.");
+            return;
+        }
+        if (tmMaterial.getText().toString().trim().isEmpty()) {
+            tmMaterial.setError("Material field is empty. Material required.");
+            return;
+        }
+
+        // Price validation
+
+        // Checks if price is empty
+        final String priceText = tmPrice.getText().toString().trim();
+        if (priceText.isEmpty()) {
+            tmPrice.setError("Price field is empty. Price required.");
+            return;
+        }
+
+        // Checks if the number in price is greater than 0
+        try {
+            double priceValue = Double.parseDouble(priceText);
+            if (priceValue < 0) {
+                tmPrice.setError("Price must be greater than 0");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            tmPrice.setError("Invalid price.");
+            return;
+        }
+
+        // Validates spinners
+        if (spCategory.getSelectedItemPosition() == 0) {
+            ((TextView) spCategory.getSelectedView()).setError("Select a Category");
+            return;
+        }
+
+        if (spSize.getSelectedItemPosition() == 0) {
+            ((TextView) spSize.getSelectedView()).setError("Select a size");
+            return;
+        }
+
+        if (spCondition.getSelectedItemPosition() == 0) {
+            ((TextView) spCondition.getSelectedView()).setError("Select a condition");
+            return;
+        }
+
+        if (spColour.getSelectedItemPosition() == 0) {
+            ((TextView) spColour.getSelectedView()).setError("Select a colour");
+            return;
+        }
+
+       // Validates the image
+        if (selectedImageUri == null) {
+            Toast.makeText(this, "Please upload an image", Toast.LENGTH_SHORT).show();
+            Log.e("SecondActivity","No image selected");
+            return;
+        }
+
+        // Collects item values after validation
+        String category = spCategory.getSelectedItem().toString();
+        String title = tmTitle.getText().toString();
+        String description = tmDescription.getText().toString();
+        String brand = tmBrand.getText().toString();
+        String size = spSize.getSelectedItem().toString();
+        String condition = spCondition.getSelectedItem().toString();
+        String colour = spColour.getSelectedItem().toString();
+        String material = tmMaterial.getText().toString();
+
+        System.out.println(category + "," + title + "," + description + "," + brand + "," + size + "," + condition + "," + colour + "," + material + "," + priceText);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference()
@@ -219,7 +293,7 @@ public class SecondActivity extends AppCompatActivity {
                                     condition,
                                     colour,
                                     material,
-                                    price
+                                    priceText
                             );
                             // Return the item to the main activity
                             Intent returnDataIntent = new Intent();
