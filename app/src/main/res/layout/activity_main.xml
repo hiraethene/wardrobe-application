@@ -11,8 +11,8 @@
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Your Virtual Wardrobe"
-        android:textSize="40dp"
+        android:text="@string/your_virtual_wardrobe"
+        android:textSize="40sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         />
@@ -22,8 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="launchSecondActivity"
-        android:text="+"
-        android:textSize="20dp"
+        android:text="@string/addItem"
+        android:textSize="20sp"
         android:layout_below="@id/tvTitle"
         android:layout_centerInParent="true"
         />
@@ -34,7 +34,7 @@
         android:layout_height="50dp"
         android:layout_below="@id/btnLaunchSecondActivity"
         android:layout_alignParentStart="true"
-        android:hint="Search..."
+        android:hint="@string/search"
         />
 
 

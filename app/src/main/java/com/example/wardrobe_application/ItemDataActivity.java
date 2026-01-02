@@ -1,22 +1,35 @@
 package com.example.wardrobe_application;
-
-import static androidx.core.content.PackageManagerCompat.LOG_TAG;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-
+/**
+ * ItemDataActivity provides the functionality for displaying a single WardrobeItem's attributes in the ItemDataActivity activity.
+ *
+ * <p>
+ *     This activity receives a WardrobeItem object through Intent, populates the views in the UI with its data, and allows the user
+ *     to delete the item from Firestore and Firebase storage.
+ * </p>
+ *
+ * <p>
+ *       Features include:
+ *       <ul>
+ *           <li>Displays item attributes including image, category, title, description, brand, size, condition
+ *               colour, material and price. This is done by populating the views using {@link #populateViews(WardrobeItem)}.</li>
+ *           <li>Deletes items from Firestore and Firebase storage using  {@link #deleteItem(WardrobeItem)} triggered by
+ *               {@link #onDeleteButtonClick(View)}.</li>
+ *           <li>Handles returning to the main activity when the user presses the back button through {@link #returnToMainActivity(View)}.</li>
+ *      </ul>
+ *   </p>
+ */
 public class ItemDataActivity extends Activity {
 TextView tvCategory, tvTitle, tvDescription, tvBrand, tvSize, tvCondition, tvColour, tvMaterial, tvPrice;
 ImageView ivDisplayItemImage;
@@ -38,62 +51,85 @@ ImageView ivDisplayItemImage;
         tvMaterial = findViewById(R.id.tvMaterial);
         tvPrice = findViewById(R.id.tvPrice);
 
-
+        // Retrieves the item that was passed
         WardrobeItem item = getIntent().getParcelableExtra("selectedItem");
-        populateViews(item);
+        if (item != null) {
+            populateViews(item);
+        } else {
+            Log.e("parcelablePassing","No WardrobeItem passed to ItemDataActivity");
+            finish();
+        }
 
-        Intent intent = getIntent();
     }
 
     /**
-     * Handles the onClick for the "Back" button.
+     * Handles the onClick for the "Back" button to return to main activity.
      *
-     * @param view The view (Button) that was clicked.
+     * @param view The button view that was clicked.
      */
-    public void returnToMainActivity(View view) {
-        // Create a new intent to return to first Activity
-        finish();
-    }
+    public void returnToMainActivity(View view) {finish();}
 
+    /**
+     *  Populates the TextViews and ImageView with the WardrobeItem item's data.
+     * @param item the WardrobeItem whose data is displayed.
+     */
     public void populateViews(WardrobeItem item) {
-        tvCategory.setText(item.itemCategory);
-        tvTitle.setText(item.itemTitle);
-        tvDescription.setText(item.itemDescription);
-        tvBrand.setText(item.itemBrand);
-        tvSize.setText(item.itemSize);
-        tvCondition.setText(item.itemCondition);
-        tvColour.setText(item.itemColour);
-        tvMaterial.setText(item.itemMaterial);
-        tvPrice.setText(item.itemPrice);
+        tvCategory.setText(item.getItemCategory());
+        tvTitle.setText(item.getItemTitle());
+        tvDescription.setText(item.getItemDescription());
+        tvBrand.setText(item.getItemBrand());
+        tvSize.setText(item.getItemSize());
+        tvCondition.setText(item.getItemCondition());
+        tvColour.setText(item.getItemColour());
+        tvMaterial.setText(item.getItemMaterial());
+        tvPrice.setText(item.getItemPrice());
 
         // Load image with firebase url
-        Glide.with(this)
-                .load(item.itemImage)
+        Glide.with(getApplicationContext())
+                .load(item.getItemImage())
                 .centerCrop()
                 .into(ivDisplayItemImage);
     }
 
+    /**
+     * Handles the click of the delete item button by calling the deleteItem method.
+     *
+     * @param view the button view that was clicked
+     */
     public void onDeleteButtonClick(View view) {
+        // Retrieves the item that was passed.
         WardrobeItem item = getIntent().getParcelableExtra("selectedItem");
-        deleteItem(item);
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra("deletedItemID", item.documentID);
-        setResult(RESULT_OK, resultIntent);
-        finish();
+        if (item !=null) {
+            //Calls the deleteItem method that removes the item from Firebase and Firestore storage.
+            deleteItem(item);
+            Intent resultIntent = new Intent();
+            // Puts the ID of the item's document into the intent so the activity knows
+            // which item was deleted.
+            resultIntent.putExtra("deletedItemID", item.getDocumentID());
+            setResult(RESULT_OK, resultIntent);
+            finish();
+        }
     }
+
+    /**
+     * Removes the item's document from the Firestore wardrobe collection and
+     * deletes its image from Firebase storage.
+     *
+     * @param item the WardrobeItem to be deleted.
+     */
     public void deleteItem(WardrobeItem item) {
-        //remove from wardrobe list and fire store?
-        if (item.documentID != null) {
+        //removes the item's document in Firestore
+        if (item.getDocumentID() != null) {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("wardrobe").document(item.documentID)
+            db.collection("wardrobe").document(item.getDocumentID())
                     .delete()
                     .addOnSuccessListener(aVoid -> Log.d("Delete","document snapshot successfully deleted"))
                     .addOnFailureListener(e -> Log.w("Delete,","Error deleting document",e));
         }
-        // Deletes the item from firebase storage
-        if (item.itemImage != null && !item.itemImage.isEmpty()) {
+        // Deletes the item's image from firebase storage
+        if (item.getItemImage() != null && !item.getItemImage().isEmpty()) {
             FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference imageRef = storage.getReferenceFromUrl(item.itemImage);
+            StorageReference imageRef = storage.getReferenceFromUrl(item.getItemImage());
             imageRef.delete()
                     .addOnSuccessListener(aVoid -> Log.d("Delete","Image successfully deleted"))
                     .addOnFailureListener(e -> Log.w("Delete,","Error deleting image",e));

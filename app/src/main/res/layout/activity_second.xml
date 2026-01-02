@@ -33,19 +33,18 @@
 
     <TextView
         android:id="@+id/tvCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="104dp"
+        android:layout_height="52dp"
         android:text="@string/tvCategory"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@id/btnImageUpload"
         app:layout_constraintEnd_toEndOf="@id/btnImageUpload"
-        app:layout_constraintTop_toBottomOf="@id/btnImageUpload"
-        />
+        app:layout_constraintEnd_toStartOf="@id/btnImageUpload"
+        app:layout_constraintTop_toBottomOf="@id/btnImageUpload" />
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="103dp"
+        android:layout_height="43dp"
         android:text="@string/tvTitle"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@id/tvCategory"
@@ -55,8 +54,8 @@
 
     <TextView
         android:id="@+id/tvDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_width="119dp"
+        android:layout_height="53dp"
         android:text="@string/tvDescription"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@id/tvTitle"
@@ -66,8 +65,8 @@
 
     <TextView
         android:id="@+id/tvBrand"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="132dp"
+        android:layout_height="54dp"
         android:text="@string/tvBrand"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@id/tvDescription"
@@ -77,155 +76,155 @@
 
     <TextView
         android:id="@+id/tvSize"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="128dp"
+        android:layout_height="50dp"
         android:text="@string/tvSize"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/tvBrand"
         app:layout_constraintEnd_toEndOf="@id/tvBrand"
-        app:layout_constraintTop_toBottomOf="@id/tvBrand"/>
+        app:layout_constraintStart_toStartOf="@id/tvBrand"
+        app:layout_constraintTop_toBottomOf="@id/tvBrand" />
 
     <TextView
         android:id="@+id/tvCondition"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="123dp"
+        android:layout_height="49dp"
         android:text="@string/tvCondition"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/tvSize"
         app:layout_constraintEnd_toEndOf="@id/tvSize"
-        app:layout_constraintTop_toBottomOf="@id/tvSize"/>
+        app:layout_constraintStart_toStartOf="@id/tvSize"
+        app:layout_constraintTop_toBottomOf="@id/tvSize" />
 
     <TextView
         android:id="@+id/tvColour"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="117dp"
+        android:layout_height="48dp"
         android:text="@string/tvColour"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/tvCondition"
         app:layout_constraintEnd_toEndOf="@id/tvCondition"
+        app:layout_constraintStart_toStartOf="@id/tvCondition"
         app:layout_constraintTop_toBottomOf="@id/tvCondition" />
 
     <TextView
         android:id="@+id/tvMaterial"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="118dp"
+        android:layout_height="50dp"
         android:text="@string/tvMaterial"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/tvColour"
         app:layout_constraintEnd_toEndOf="@id/tvColour"
+        app:layout_constraintStart_toStartOf="@id/tvColour"
         app:layout_constraintTop_toBottomOf="@id/tvColour" />
 
     <TextView
         android:id="@+id/tvPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="121dp"
+        android:layout_height="43dp"
         android:text="@string/tvPrice"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/tvMaterial"
         app:layout_constraintEnd_toEndOf="@id/tvMaterial"
+        app:layout_constraintStart_toStartOf="@id/tvMaterial"
         app:layout_constraintTop_toBottomOf="@id/tvMaterial" />
 
 
     <Spinner
         android:id="@+id/spCategory"
-        android:layout_width="222dp"
-        android:layout_height="40dp"
-        app:layout_constraintStart_toEndOf="@id/btnImageUpload"
+        android:layout_width="200dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="@id/btnImageUpload"
-        app:layout_constraintTop_toBottomOf="@id/btnImageUpload"
-        />
+        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintStart_toEndOf="@id/btnImageUpload"
+        app:layout_constraintTop_toBottomOf="@id/btnImageUpload" />
 
     <EditText
-        android:id="@+id/tmTitle"
-        android:layout_width="222dp"
-        android:layout_height="40dp"
-        android:autofillHints="meow"
+        android:id="@+id/etTitle"
+        android:layout_width="194dp"
+        android:layout_height="48dp"
         android:ems="10"
-        android:hint="@string/tmTitle"
+        android:hint="@string/etTitleHint"
         android:inputType="textLongMessage"
-        app:layout_constraintStart_toStartOf="@id/spCategory"
+        android:autofillHints="none"
         app:layout_constraintEnd_toEndOf="@id/spCategory"
-        app:layout_constraintTop_toBottomOf="@id/spCategory"
-        />
+        app:layout_constraintStart_toStartOf="@id/spCategory"
+        app:layout_constraintTop_toBottomOf="@id/spCategory" />
 
     <EditText
-        android:id="@+id/tmDescription"
-        android:layout_width="222dp"
-        android:layout_height="80dp"
-        android:autofillHints="meow"
+        android:id="@+id/etDescription"
+        android:layout_width="177dp"
+        android:layout_height="58dp"
         android:ems="10"
-        android:hint="@string/tmDescription"
+        android:hint="@string/etDescriptionHint"
+        android:autofillHints="none"
         android:inputType="textLongMessage"
-        app:layout_constraintStart_toStartOf="@id/tmTitle"
-        app:layout_constraintEnd_toEndOf="@id/tmTitle"
-        app:layout_constraintTop_toBottomOf="@id/tmTitle" />
+        app:layout_constraintEnd_toEndOf="@id/etTitle"
+        app:layout_constraintStart_toStartOf="@id/etTitle"
+        app:layout_constraintTop_toBottomOf="@id/etTitle" />
 
     <EditText
-        android:id="@+id/tmBrand"
-        android:layout_width="222dp"
-        android:layout_height="40dp"
+        android:id="@+id/etBrand"
+        android:layout_width="193dp"
+        android:layout_height="48dp"
         android:autofillHints="meow"
         android:ems="10"
-        android:hint="@string/tmBrand"
+        android:hint="@string/etBrandHint"
         android:inputType="textLongMessage"
-        app:layout_constraintStart_toStartOf="@id/tmDescription"
-        app:layout_constraintEnd_toEndOf="@id/tmDescription"
-        app:layout_constraintTop_toBottomOf="@id/tmDescription"  />
+        app:layout_constraintEnd_toEndOf="@id/etDescription"
+        app:layout_constraintStart_toStartOf="@id/etDescription"
+        app:layout_constraintTop_toBottomOf="@id/etDescription" />
 
     <Spinner
         android:id="@+id/spSize"
-        android:layout_width="222dp"
-        android:layout_height="40dp"
-        app:layout_constraintStart_toStartOf="@id/tmBrand"
-        app:layout_constraintEnd_toEndOf="@id/tmBrand"
-        app:layout_constraintTop_toBottomOf="@id/tmBrand"  />
+        android:layout_width="201dp"
+        android:layout_height="48dp"
+        app:layout_constraintEnd_toEndOf="@id/etBrand"
+        app:layout_constraintStart_toStartOf="@id/etBrand"
+        app:layout_constraintTop_toBottomOf="@id/etBrand" />
 
     <Spinner
         android:id="@+id/spCondition"
-        android:layout_width="222dp"
-        android:layout_height="40dp"
-        app:layout_constraintStart_toStartOf="@id/spSize"
+        android:layout_width="209dp"
+        android:layout_height="48dp"
         app:layout_constraintEnd_toEndOf="@id/spSize"
+        app:layout_constraintStart_toStartOf="@id/spSize"
         app:layout_constraintTop_toBottomOf="@id/spSize" />
 
     <Spinner
         android:id="@+id/spColour"
-        android:layout_width="222dp"
-        android:layout_height="40dp"
-        app:layout_constraintStart_toStartOf="@id/spCondition"
+        android:layout_width="202dp"
+        android:layout_height="48dp"
         app:layout_constraintEnd_toEndOf="@id/spCondition"
+        app:layout_constraintStart_toStartOf="@id/spCondition"
         app:layout_constraintTop_toBottomOf="@id/spCondition" />
 
     <EditText
-        android:id="@+id/tmMaterial"
-        android:layout_width="222dp"
-        android:layout_height="40dp"
+        android:id="@+id/etMaterial"
+        android:layout_width="205dp"
+        android:layout_height="48dp"
         android:autofillHints="meow"
         android:ems="10"
-        android:hint="@string/tmMaterial"
+        android:hint="@string/etMaterialHint"
         android:inputType="textLongMessage"
-        app:layout_constraintStart_toStartOf="@id/spColour"
         app:layout_constraintEnd_toEndOf="@id/spColour"
-        app:layout_constraintTop_toBottomOf="@id/spColour"/>
+        app:layout_constraintStart_toStartOf="@id/spColour"
+        app:layout_constraintTop_toBottomOf="@id/spColour" />
 
     <EditText
-        android:id="@+id/tmPrice"
-        android:layout_width="222dp"
-        android:layout_height="40dp"
+        android:id="@+id/etPrice"
+        android:layout_width="202dp"
+        android:layout_height="48dp"
         android:autofillHints="meow"
         android:ems="10"
-        android:hint="@string/tmPrice"
+        android:hint="@string/etPriceHint"
         android:inputType="textLongMessage"
-        app:layout_constraintStart_toStartOf="@id/tmMaterial"
-        app:layout_constraintEnd_toEndOf="@id/tmMaterial"
-        app:layout_constraintTop_toBottomOf="@id/tmMaterial" />
+        app:layout_constraintEnd_toEndOf="@id/etMaterial"
+        app:layout_constraintStart_toStartOf="@id/etMaterial"
+        app:layout_constraintTop_toBottomOf="@id/etMaterial" />
 
     <Button
         android:id="@+id/btnUploadItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="36dp"
         android:onClick="collectItemData"
         android:text="@string/btnUploadItem"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -236,7 +235,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="316dp"
-        android:onClick="returnReply"
+        android:onClick="returnToMainActivity"
         android:text="@string/btnBack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -17,14 +17,12 @@
     <string name="tvColour">Colour</string>
     <string name="tvPrice">Price</string>
     <string name="tvMaterial">Material</string>
-    <string name="tmTitle">Title</string>
-    <string name="tmDescription">Description</string>
-    <string name="tmBrand">Brand</string>
-    <string name="tmMaterial">Material</string>
-    <string name="tmPrice">Price</string>
-    <string name="clothingImage" />
-    <string name="description">meowmeow</string>
-    <string name="tvItemNum"></string>
+    <string name="etTitle">etTitle</string>
+    <string name="etDescription">etDescription</string>
+    <string name="etBrand">etBrand</string>
+    <string name="etMaterial">etMaterial</string>
+    <string name="etPrice">etPrice</string>
+    <string name="tvItemNum">0 Items</string>
     <string name="tvItemDetails">Item details</string>
     <string name="tvAddItemDetails">Add item details</string>
     <string name="itemImage">Item Image</string>
@@ -39,6 +37,16 @@
     <string name="tvPriceLabel">Price</string>
     <string name="btnImageUpload">Where users upload their item image</string>
     <string name="btnDeleteItem">Delete item</string>
+    <string name="clothingImage">image</string>
+    <string name="btnDeleteItemDesc">Button that the user can press to delete a wardrobe item</string>
+    <string name="etTitleHint">Title</string>
+    <string name="your_virtual_wardrobe">Your Virtual Wardrobe</string>
+    <string name="addItem">+</string>
+    <string name="search">Search…</string>
+    <string name="etDescriptionHint">Description</string>
+    <string name="etBrandHint">Brand</string>
+    <string name="etMaterialHint">Material</string>
+    <string name="etPriceHint">Price</string>
 
 
     <string-array name ="array_category">
