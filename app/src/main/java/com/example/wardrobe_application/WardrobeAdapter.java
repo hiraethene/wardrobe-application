@@ -1,5 +1,6 @@
 package com.example.wardrobe_application;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +20,14 @@ import java.util.ArrayList;
  *     <li>Inflates a card layout for each item.</li>
  *     <li>Binds the item's image reference to its ImageView.</li>
  *     <li>Sets a click listener for the ImageView representing the item.</li>
- *     <li>Includes a method that removes items from the list of wardrobe items.</li>
- *     <li>Includes a method that returns the size of the list of wardrobe items.</li>
+ *     <li>Includes a method that returns the size of the list of displayed wardrobe items.</li>
+ *     <li>Includes a method that updates the RecyclerView with the updated list of filtered items.</li>
  * </ul>
  * </p>
  */
 public class WardrobeAdapter extends RecyclerView.Adapter<WardrobeAdapter.ViewHolder> {
     private final ArrayList<WardrobeItem> wardrobeItemArrayList;
+    private final ArrayList<WardrobeItem> displayedList;
     //The listener for the click of the ImageView
     private onItemClickListener listener;
 
@@ -37,6 +39,7 @@ public class WardrobeAdapter extends RecyclerView.Adapter<WardrobeAdapter.ViewHo
      */
     public WardrobeAdapter(ArrayList<WardrobeItem> wardrobeItemArrayList) {
         this.wardrobeItemArrayList = wardrobeItemArrayList;
+        this.displayedList = new ArrayList<>(wardrobeItemArrayList);
     }
 
     /**
@@ -44,7 +47,7 @@ public class WardrobeAdapter extends RecyclerView.Adapter<WardrobeAdapter.ViewHo
      * @return the size of the ArrayList.
      */
     @Override
-    public int getItemCount() {return wardrobeItemArrayList.size();}
+    public int getItemCount() {return displayedList.size();}
 
     /**
      * RecyclerView calls this method whenever it needs to create a new ViewHolder. This inflates
@@ -74,7 +77,7 @@ public class WardrobeAdapter extends RecyclerView.Adapter<WardrobeAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull WardrobeAdapter.ViewHolder holder, int position) {
         // Gets the item at the current position
-        WardrobeItem item = wardrobeItemArrayList.get(position);
+        WardrobeItem item = displayedList.get(position);
 
         // Loads the item's image using Glide
         holder.ivItemImage.setImageDrawable(null);
@@ -88,16 +91,13 @@ public class WardrobeAdapter extends RecyclerView.Adapter<WardrobeAdapter.ViewHo
 
     }
 
-    /**
-     * Removes the item from the wardrobe array.
-     * @param item the item to be removed.
-     */
-    public void removeItem(WardrobeItem item) {
-        int pos = wardrobeItemArrayList.indexOf(item);
-        if (pos != -1) {
-            wardrobeItemArrayList.remove(pos);
-            notifyItemRemoved(pos);
-        }
+    // Getter for displayed list
+    public int getDisplayedItemCount() {
+        return displayedList.size();
+    }
+
+    public ArrayList<WardrobeItem> getWardrobeItemArrayList() {
+        return wardrobeItemArrayList;
     }
 
     /**
@@ -112,6 +112,17 @@ public class WardrobeAdapter extends RecyclerView.Adapter<WardrobeAdapter.ViewHo
     public void setOnItemClickListener(onItemClickListener listener) {this.listener = listener;}
 
 
+    /**
+     * Method that updates the adapter with a new filtered list of wardrobe items.
+     * @param filteredList  the list of filtered wardrobe items to display in the recyclerview
+     */
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterList(ArrayList<WardrobeItem> filteredList) {
+        displayedList.clear();
+        displayedList.addAll(filteredList);
+        notifyDataSetChanged();
+
+    }
     /**
      * This is the ViewHolder class that holds the references to the ImageView used to display the item.
      */

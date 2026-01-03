@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity"
     >
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="91dp"
         android:text="@string/your_virtual_wardrobe"
-        android:textSize="40sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        />
+        android:textSize="40sp" />
 
     <Button
         android:id="@+id/btnLaunchSecondActivity"
@@ -23,47 +21,65 @@
         android:layout_height="wrap_content"
         android:onClick="launchSecondActivity"
         android:text="@string/addItem"
-        android:textSize="20sp"
-        android:layout_below="@id/tvTitle"
-        android:layout_centerInParent="true"
-        />
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp" />
 
     <SearchView
         android:id="@+id/svWardrobe"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/btnLaunchSecondActivity"
-        android:layout_alignParentStart="true"
         android:hint="@string/search"
         />
+
+    <Spinner
+        android:id="@+id/spFilter"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp" />
+    <Spinner
+        android:id="@+id/spCategoryFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"/>
+    <Spinner
+        android:id="@+id/spSizeFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"/>
+    <Spinner
+        android:id="@+id/spConditionFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"/>
+    <Spinner
+        android:id="@+id/spColourFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"/>
+    <Spinner
+        android:id="@+id/spPriceFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="8dp" />
 
 
     <TextView
         android:id="@+id/tvItemNum"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tvItemNum"
-        android:layout_below="@id/svWardrobe"
-        />
+        android:layout_height="48dp"
+        android:text="@string/tvItemNum" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWardrobe"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvItemNum"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="-3dp"
+        android:layout_height="363dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="0dp" />
-
-    <EditText
-        android:id="@+id/editText_main"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rvWardrobe"
-        android:autofillHints="meow"
-        android:ems="10"
-        android:hint="@string/editText_main"
-        android:inputType="textLongMessage" />
-</RelativeLayout>
+</LinearLayout>
 
 

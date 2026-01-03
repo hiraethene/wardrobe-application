@@ -31,8 +31,8 @@ import com.google.firebase.storage.StorageReference;
  *   </p>
  */
 public class ItemDataActivity extends Activity {
-TextView tvCategory, tvTitle, tvDescription, tvBrand, tvSize, tvCondition, tvColour, tvMaterial, tvPrice;
-ImageView ivDisplayItemImage;
+    TextView tvCategory, tvTitle, tvDescription, tvBrand, tvSize, tvCondition, tvColour, tvMaterial, tvPrice;
+    ImageView ivDisplayItemImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ ImageView ivDisplayItemImage;
         if (item != null) {
             populateViews(item);
         } else {
-            Log.e("parcelablePassing","No WardrobeItem passed to ItemDataActivity");
+            Log.e("parcelablePassing", "No WardrobeItem passed to ItemDataActivity");
             finish();
         }
 
@@ -67,10 +67,13 @@ ImageView ivDisplayItemImage;
      *
      * @param view The button view that was clicked.
      */
-    public void returnToMainActivity(View view) {finish();}
+    public void returnToMainActivity(View view) {
+        finish();
+    }
 
     /**
-     *  Populates the TextViews and ImageView with the WardrobeItem item's data.
+     * Populates the TextViews and ImageView with the WardrobeItem item's data.
+     *
      * @param item the WardrobeItem whose data is displayed.
      */
     public void populateViews(WardrobeItem item) {
@@ -92,47 +95,60 @@ ImageView ivDisplayItemImage;
     }
 
     /**
-     * Handles the click of the delete item button by calling the deleteItem method.
+     * Handles the click of the delete item button by calling the deleteItem method
+     * and checks with the user if they're sure they want to delete the item
+     * using a confirmation dialog.
      *
      * @param view the button view that was clicked
      */
     public void onDeleteButtonClick(View view) {
         // Retrieves the item that was passed.
         WardrobeItem item = getIntent().getParcelableExtra("selectedItem");
-        if (item !=null) {
-            //Calls the deleteItem method that removes the item from Firebase and Firestore storage.
-            deleteItem(item);
-            Intent resultIntent = new Intent();
-            // Puts the ID of the item's document into the intent so the activity knows
-            // which item was deleted.
-            resultIntent.putExtra("deletedItemID", item.getDocumentID());
-            setResult(RESULT_OK, resultIntent);
-            finish();
-        }
+        if (item == null) return;
+
+        // Confirmation dialog to see if the user actually wants to delete the item
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Delete item")
+                .setMessage("Are you sure you want to delete this item?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    //Calls the deleteItem method that removes the item from Firebase and Firestore storage
+                    deleteItem(item);
+                    Intent resultIntent = new Intent();
+                    // Puts the ID of the item's document into the intent so the activity knows
+                    // which item was deleted.
+                    resultIntent.putExtra("deletedItemID", item.getDocumentID());
+                    setResult(RESULT_OK, resultIntent);
+                    finish();
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    // Dialog dismisses
+                    dialog.dismiss();
+                })
+                .show();
     }
 
-    /**
-     * Removes the item's document from the Firestore wardrobe collection and
-     * deletes its image from Firebase storage.
-     *
-     * @param item the WardrobeItem to be deleted.
-     */
-    public void deleteItem(WardrobeItem item) {
-        //removes the item's document in Firestore
-        if (item.getDocumentID() != null) {
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("wardrobe").document(item.getDocumentID())
-                    .delete()
-                    .addOnSuccessListener(aVoid -> Log.d("Delete","document snapshot successfully deleted"))
-                    .addOnFailureListener(e -> Log.w("Delete,","Error deleting document",e));
-        }
-        // Deletes the item's image from firebase storage
-        if (item.getItemImage() != null && !item.getItemImage().isEmpty()) {
-            FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference imageRef = storage.getReferenceFromUrl(item.getItemImage());
-            imageRef.delete()
-                    .addOnSuccessListener(aVoid -> Log.d("Delete","Image successfully deleted"))
-                    .addOnFailureListener(e -> Log.w("Delete,","Error deleting image",e));
+        /**
+         * Removes the item's document from the Firestore wardrobe collection and
+         * deletes its image from Firebase storage.
+         *
+         * @param item the WardrobeItem to be deleted.
+         */
+        public void deleteItem (WardrobeItem item){
+            //removes the item's document in Firestore
+            if (item.getDocumentID() != null) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("wardrobe").document(item.getDocumentID())
+                        .delete()
+                        .addOnSuccessListener(aVoid -> Log.d("Delete", "document snapshot successfully deleted"))
+                        .addOnFailureListener(e -> Log.w("Delete,", "Error deleting document", e));
+            }
+            // Deletes the item's image from firebase storage
+            if (item.getItemImage() != null && !item.getItemImage().isEmpty()) {
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference imageRef = storage.getReferenceFromUrl(item.getItemImage());
+                imageRef.delete()
+                        .addOnSuccessListener(aVoid -> Log.d("Delete", "Image successfully deleted"))
+                        .addOnFailureListener(e -> Log.w("Delete,", "Error deleting image", e));
+            }
         }
     }
-}

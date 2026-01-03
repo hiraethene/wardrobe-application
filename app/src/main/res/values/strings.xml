@@ -61,15 +61,15 @@
 
     <string-array name="array_size">
         <item>Select a size</item>
-        <item> XXXS / UK 0</item>
-        <item> XXS / UK 2</item>
-        <item> XS / UK 4–6</item>
-        <item> S / UK 8–10</item>
-        <item> M / UK 12–14</item>
-        <item> L / UK 16–18</item>
-        <item> XL / UK 20–22</item>
-        <item> XXL / UK 24–26</item>
-        <item> XXXL / UK 28–30</item>
+        <item>XXXS / UK 0</item>
+        <item>XXS / UK 2</item>
+        <item>XS / UK 4–6</item>
+        <item>S / UK 8–10</item>
+        <item>M / UK 12–14</item>
+        <item>L / UK 14–16</item>
+        <item>XL / UK 16–18</item>
+        <item>XXL / UK 18–20</item>
+        <item>XXXL / UK 22–24</item>
     </string-array>
 
     <string-array name="array_condition">
@@ -83,18 +83,83 @@
 
     <string-array name="array_colour">
         <item>Select a colour</item>
-        <item>black</item>
-        <item>gray</item>
-        <item>white</item>
-        <item>red</item>
-        <item>pink</item>
-        <item>purple</item>
-        <item>blue</item>
-        <item>green</item>
-        <item>yellow</item>
-        <item>orange</item>
-        <item>brown</item>
-        <item>beige</item>
-        <item>multi-colour</item>
+        <item>Black</item>
+        <item>Gray</item>
+        <item>White</item>
+        <item>Red</item>
+        <item>Pink</item>
+        <item>Purple</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Yellow</item>
+        <item>Orange</item>
+        <item>Brown</item>
+        <item>Beige</item>
+        <item>Multi-colour</item>
+    </string-array>
+
+
+    <string-array name="filter_menu">
+        <item>Sort by…</item>
+        <item>Category</item>
+        <item>Size</item>
+        <item>Condition</item>
+        <item>Colour</item>
+        <item>Price</item>
+    </string-array>
+
+    <string-array name="filter_category">
+        <item>All</item>
+        <item>Tops</item>
+        <item>Bottoms</item>
+        <item>Dresses</item>
+        <item>Jackets and Coats</item>
+        <item>Swimwear</item>
+        <item>Shoes</item>
+    </string-array>
+
+    <string-array name="filter_size">
+        <item>All</item>
+        <item> XXXS / UK 0</item>
+        <item> XXS / UK 2</item>
+        <item> XS / UK 4–6</item>
+        <item> S / UK 8–10</item>
+        <item> M / UK 12–14</item>
+        <item> L / UK 14–16</item>
+        <item> XL / UK 16–18</item>
+        <item> XXL / UK 18–20</item>
+        <item> XXXL / UK 22–24</item>
+    </string-array>
+
+    <string-array name="filter_condition">
+        <item>All</item>
+        <item>New with tags</item>
+        <item>New without tags</item>
+        <item>Very good</item>
+        <item>good</item>
+        <item>okay</item>
+    </string-array>
+
+    <string-array name="filter_colour">
+        <item>All</item>
+        <item>Black</item>
+        <item>Gray</item>
+        <item>White</item>
+        <item>Red</item>
+        <item>Pink</item>
+        <item>Purple</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Yellow</item>
+        <item>Orange</item>
+        <item>Brown</item>
+        <item>Beige</item>
+        <item>Multi-colour</item>
+    </string-array>
+
+    <string-array name="filter_price">
+        <item>All</item>
+        <item>Lowest to highest</item>
+        <item>Highest to lowest</item>
     </string-array>
 </resources>

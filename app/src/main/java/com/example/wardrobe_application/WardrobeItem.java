@@ -82,6 +82,14 @@ public class WardrobeItem implements Parcelable {
     // Setter for the document ID of the item
     public void setDocumentID(String documentID) {this.documentID = documentID;}
 
+    public double getItemPriceAsDouble() {
+        try {
+            return Double.parseDouble(itemPrice);
+        } catch (NumberFormatException e) {
+            // if price is invalid
+            return 0;
+        }
+    }
     /**
      * <p>
      *     Constructs a WardrobeItem from a parcel which is used by the parcelable creator to create an item object.

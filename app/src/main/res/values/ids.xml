@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="spCategoryFilter" type="id"/>
+    <item name="spSizeFilter" type="id"/>
+    <item name="spConditionFilter" type="id"/>
+    <item name="spColourFilter" type="id"/>
+</resources>
