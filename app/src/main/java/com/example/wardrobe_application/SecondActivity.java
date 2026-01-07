@@ -128,7 +128,6 @@ public class SecondActivity extends AppCompatActivity {
 
         // Registers the activity result launcher for an image to be selected from
         // the user's gallery.
-
         launchGallery = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -145,10 +144,7 @@ public class SecondActivity extends AppCompatActivity {
                                     .load(selectedImageUri)
                                     .centerCrop()
                                     .into(imageButton);
-                            }
-                    }
-                }
-        );
+                            }}});
         // Opens the gallery when the image button is clicked
         imageButton.setOnClickListener(view -> openGallery());
     }
@@ -301,7 +297,6 @@ public class SecondActivity extends AppCompatActivity {
         System.out.println(category + "," + title + "," + description + "," + brand + "," + size + "," + condition + "," + colour + "," + material + "," + priceText);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-
         // Creates a reference to a new file in the wardrobe_images folder and
         // generates a file name using the current time stamp to ensure it's unique and not
         // redundant.
@@ -316,18 +311,8 @@ public class SecondActivity extends AppCompatActivity {
                             String downloadUrl = uri.toString();
 
                             // creates the item object
-                            WardrobeItem item = new WardrobeItem(
-                                    downloadUrl,
-                                    category,
-                                    title,
-                                    description,
-                                    brand,
-                                    size,
-                                    condition,
-                                    colour,
-                                    material,
-                                    priceText
-                            );
+                            WardrobeItem item = new WardrobeItem(downloadUrl, category, title, description, brand, size,
+                                    condition, colour, material, priceText);
                             // Return the item to the main activity using Intent
                             Intent returnDataIntent = new Intent();
                             returnDataIntent.putExtra("newItem", item);

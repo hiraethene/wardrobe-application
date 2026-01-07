@@ -15,5 +15,6 @@
         android:contentDescription="@string/clothingImage"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
+        android:background="@color/black"
     />
 </androidx.cardview.widget.CardView>

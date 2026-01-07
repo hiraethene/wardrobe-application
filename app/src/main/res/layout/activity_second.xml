@@ -16,40 +16,51 @@
         android:layout_marginTop="40dp"
         android:text="@string/tvAddItemDetails"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
 
     <ImageButton
         android:id="@+id/btnImageUpload"
         android:layout_width="168dp"
         android:layout_height="131dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/black"
         android:contentDescription="@string/btnImageUpload"
+        android:textSize="20sp"
+        app:cornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="@id/tvAddItemDetails"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="@id/tvAddItemDetails"
         app:layout_constraintTop_toBottomOf="@id/tvAddItemDetails"
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <TextView
         android:id="@+id/tvCategory"
-        android:layout_width="97dp"
-        android:layout_height="54dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/spCategory"
         android:text="@string/tvCategory"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/btnImageUpload"
         app:layout_constraintEnd_toStartOf="@id/btnImageUpload"
         app:layout_constraintTop_toBottomOf="@id/btnImageUpload" />
+
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="119dp"
         android:layout_height="50dp"
+        android:layout_marginTop="24dp"
         android:text="@string/tvTitle"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/tvCategory"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/tvCategory"
@@ -57,10 +68,13 @@
 
     <TextView
         android:id="@+id/tvDescription"
-        android:layout_width="132dp"
-        android:layout_height="57dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:labelFor="@id/etDescription"
         android:text="@string/tvDescription"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/tvTitle"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/tvTitle"
@@ -70,8 +84,11 @@
         android:id="@+id/tvBrand"
         android:layout_width="132dp"
         android:layout_height="51dp"
+        android:layout_marginTop="12dp"
+        android:labelFor="@id/etBrand"
         android:text="@string/tvBrand"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/tvDescription"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/tvDescription"
@@ -81,19 +98,27 @@
         android:id="@+id/tvSize"
         android:layout_width="128dp"
         android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:labelFor="@id/spSize"
         android:text="@string/tvSize"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/tvBrand"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/tvBrand"
         app:layout_constraintTop_toBottomOf="@id/tvBrand" />
 
     <TextView
         android:id="@+id/tvCondition"
-        android:layout_width="120dp"
-        android:layout_height="42dp"
+        android:layout_width="131dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="4dp"
+        android:labelFor="@id/spCondition"
         android:text="@string/tvCondition"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/tvSize"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/tvSize"
         app:layout_constraintTop_toBottomOf="@id/tvSize" />
 
@@ -101,19 +126,27 @@
         android:id="@+id/tvColour"
         android:layout_width="117dp"
         android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:labelFor="@id/spColour"
         android:text="@string/tvColour"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/tvCondition"
+        app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toStartOf="@id/tvCondition"
         app:layout_constraintTop_toBottomOf="@id/tvCondition" />
 
     <TextView
         android:id="@+id/tvMaterial"
-        android:layout_width="112dp"
-        android:layout_height="46dp"
+        android:layout_width="117dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:labelFor="@id/etMaterial"
         android:text="@string/tvMaterial"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/tvColour"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/tvColour"
         app:layout_constraintTop_toBottomOf="@id/tvColour" />
 
@@ -121,20 +154,23 @@
         android:id="@+id/tvPrice"
         android:layout_width="121dp"
         android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:labelFor="@id/etPrice"
         android:text="@string/tvPrice"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/tvMaterial"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/tvMaterial"
         app:layout_constraintTop_toBottomOf="@id/tvMaterial" />
 
-
     <Spinner
         android:id="@+id/spCategory"
-        android:layout_width="200dp"
+        android:layout_width="187dp"
         android:layout_height="49dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="@id/btnImageUpload"
-        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toEndOf="@id/btnImageUpload"
         app:layout_constraintTop_toBottomOf="@id/btnImageUpload" />
 
@@ -144,6 +180,9 @@
         android:layout_height="48dp"
         android:ems="10"
         android:hint="@string/etTitleHint"
+        android:textColorHint="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:inputType="textLongMessage"
         android:autofillHints="none"
         app:layout_constraintEnd_toEndOf="@id/spCategory"
@@ -152,24 +191,31 @@
 
     <EditText
         android:id="@+id/etDescription"
-        android:layout_width="177dp"
-        android:layout_height="58dp"
+        android:layout_width="195dp"
+        android:layout_height="56dp"
+        android:autofillHints="none"
         android:ems="10"
         android:hint="@string/etDescriptionHint"
-        android:autofillHints="none"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:inputType="textLongMessage"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@id/etTitle"
         app:layout_constraintStart_toStartOf="@id/etTitle"
         app:layout_constraintTop_toBottomOf="@id/etTitle" />
 
     <EditText
         android:id="@+id/etBrand"
-        android:layout_width="193dp"
-        android:layout_height="48dp"
+        android:layout_width="201dp"
+        android:layout_height="49dp"
         android:autofillHints="meow"
         android:ems="10"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:hint="@string/etBrandHint"
         android:inputType="textLongMessage"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@id/etDescription"
         app:layout_constraintStart_toStartOf="@id/etDescription"
         app:layout_constraintTop_toBottomOf="@id/etDescription" />
@@ -184,52 +230,63 @@
 
     <Spinner
         android:id="@+id/spCondition"
-        android:layout_width="209dp"
-        android:layout_height="48dp"
+        android:layout_width="201dp"
+        android:layout_height="49dp"
         app:layout_constraintEnd_toEndOf="@id/spSize"
         app:layout_constraintStart_toStartOf="@id/spSize"
         app:layout_constraintTop_toBottomOf="@id/spSize" />
 
     <Spinner
         android:id="@+id/spColour"
-        android:layout_width="202dp"
-        android:layout_height="48dp"
+        android:layout_width="200dp"
+        android:layout_height="51dp"
         app:layout_constraintEnd_toEndOf="@id/spCondition"
         app:layout_constraintStart_toStartOf="@id/spCondition"
         app:layout_constraintTop_toBottomOf="@id/spCondition" />
 
     <EditText
         android:id="@+id/etMaterial"
-        android:layout_width="205dp"
-        android:layout_height="48dp"
+        android:layout_width="200dp"
+        android:layout_height="49dp"
         android:autofillHints="meow"
         android:ems="10"
         android:hint="@string/etMaterialHint"
         android:inputType="textLongMessage"
+        android:textColorHint="@color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/spColour"
         app:layout_constraintStart_toStartOf="@id/spColour"
         app:layout_constraintTop_toBottomOf="@id/spColour" />
 
     <EditText
         android:id="@+id/etPrice"
-        android:layout_width="213dp"
-        android:layout_height="50dp"
-        android:autofillHints="meow"
+        android:layout_width="198dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="4dp"
+        android:autofillHints=""
+        android:textColorHint="@color/black"
         android:ems="10"
         android:hint="@string/etPriceHint"
+        android:textStyle="bold"
+        android:textSize="20sp"
         android:inputType="textLongMessage"
         app:layout_constraintEnd_toEndOf="@id/etMaterial"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/etMaterial"
         app:layout_constraintTop_toBottomOf="@id/etMaterial" />
 
     <Button
         android:id="@+id/btnUploadItem"
-        android:layout_width="111dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="132dp"
+        android:layout_width="121dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="144dp"
         android:layout_marginBottom="4dp"
         android:onClick="collectItemData"
         android:text="@string/btnUploadItem"
+        android:textStyle="bold"
+        android:backgroundTint="@color/black"
+        app:cornerRadius="12dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -240,6 +297,11 @@
         android:layout_marginEnd="316dp"
         android:onClick="returnToMainActivity"
         android:text="@string/btnBack"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/black"
+        app:cornerRadius="12dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -38,15 +38,18 @@
     <string name="btnImageUpload">Where users upload their item image</string>
     <string name="btnDeleteItem">Delete item</string>
     <string name="clothingImage">image</string>
-    <string name="btnDeleteItemDesc">Button that the user can press to delete a wardrobe item</string>
-    <string name="etTitleHint">Title</string>
+    <string name="btnDeleteItemDesc">Deletes a wardrobe item</string>
+    <string name="etTitleHint">Enter a title</string>
     <string name="your_virtual_wardrobe">Your Virtual Wardrobe</string>
     <string name="addItem">+</string>
     <string name="search">Search…</string>
-    <string name="etDescriptionHint">Description</string>
-    <string name="etBrandHint">Brand</string>
-    <string name="etMaterialHint">Material</string>
-    <string name="etPriceHint">Price</string>
+    <string name="etDescriptionHint">Enter a description</string>
+    <string name="etBrandHint">Enter the brand</string>
+    <string name="etMaterialHint">Enter the material(s)</string>
+    <string name="etPriceHint">Enter the price</string>
+    <string name="tvAppTitle">Armoire</string>
+    <string name="svWardrobe">Search...</string>
+    <string name="the_brand_of_the_item">The brand of the item</string>
 
 
     <string-array name ="array_category">

@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
      *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
      *
      */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,12 +124,12 @@ public class MainActivity extends AppCompatActivity {
         spFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // Hides sub spinners
-                spCategoryFilter.setVisibility(View.GONE);
-                spSizeFilter.setVisibility(View.GONE);
-                spConditionFilter.setVisibility(View.GONE);
-                spColourFilter.setVisibility(View.GONE);
-                spPriceFilter.setVisibility(View.GONE);
+                // Hides sub spinners to show only one filter at a time
+//                spCategoryFilter.setVisibility(View.GONE);
+//                spSizeFilter.setVisibility(View.GONE);
+//                spConditionFilter.setVisibility(View.GONE);
+//                spColourFilter.setVisibility(View.GONE);
+//                spPriceFilter.setVisibility(View.GONE);
 
                 // Resets filters to all
                 spCategoryFilter.setSelection(0);
