@@ -17,10 +17,12 @@ and seeing what clothes they already own to keep in mind for future purchases.
 
 ## Notes
 Further developments will include the implementation of outfit planning and a fix to the shoe sizing bug.
+The app may run a little slowly on emulators, so if a button doesn't seem to work, that isn't the case.
 
 ## Requirements / advice
 You'll need to add the google-services.json file to your app folder. 
 The app is called Armoire, so if you can't find it on your emulator, search for Armoire. 
+If running it from the zipped file, unzip the file , and import it 
 
 ## How to Run this project
 
