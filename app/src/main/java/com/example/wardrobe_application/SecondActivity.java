@@ -128,6 +128,9 @@ public class SecondActivity extends AppCompatActivity {
 
         // Registers the activity result launcher for an image to be selected from
         // the user's gallery.
+        // Guided by youtube tutorial pick image from gallery tutorial
+        // https://www.youtube.com/watch?v=H1ja8gvTtBE (Accessed: 09/01/2026)
+        // Image loading guided by youtube tutorial https://www.youtube.com/watch?v=dnIpeem_1YE (Accessed: 09/01/2026)
         launchGallery = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
