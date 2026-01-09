@@ -50,6 +50,7 @@
     <string name="tvAppTitle">Armoire</string>
     <string name="svWardrobe">Search...</string>
     <string name="the_brand_of_the_item">The brand of the item</string>
+    <string name="appName">Armoire</string>
 
 
     <string-array name ="array_category">
